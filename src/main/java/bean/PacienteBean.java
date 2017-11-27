@@ -5,6 +5,7 @@
  */
 package bean;
 
+import com.google.gson.annotations.Expose;
 import java.util.Date;
 
 /**
@@ -12,26 +13,48 @@ import java.util.Date;
  * @author a023321991z
  */
 public class PacienteBean {
+    private Integer id;
+    @Expose
     private String dni;
+    @Expose
     private String nombre;
+    @Expose
     private String primer_apellido;
+    @Expose
     private String segundo_apellido;
+    @Expose
     private String direccion;
+    @Expose
     private String municipio;
+    @Expose
     private String codigo_postal;
+    @Expose
     private String provincia;
+    @Expose
     private String pais;
+    @Expose
     private String email;
+    @Expose
     private String tlf1;
+    @Expose
     private String tlf2;
+    @Expose
     private String nombre_padre;
+    @Expose
     private String nombre_madre;
+    @Expose
     private Date fechaNace;
+    @Expose
     private String ciudadNace;
+    @Expose
     private String paisNace;
+    @Expose
     private String sip_ase;
+    @Expose
     private Integer id_tipopago;
+    @Expose
     private Integer sexo;
+    @Expose
     private Integer id_usuario;
 
     public PacienteBean(String dni, String nombre, String primer_apellido, String segundo_apellido, String direccion, String municipio, String codigo_postal, String provincia, String pais, String email, String tlf1, String tlf2, String nombre_padre, String nombre_madre, Date fechaNace, String ciudadNace, String paisNace, String sip_ase, Integer id_tipopago, Integer sexo, Integer id_usuario) {
@@ -56,6 +79,10 @@ public class PacienteBean {
         this.id_tipopago = id_tipopago;
         this.sexo = sexo;
         this.id_usuario = id_usuario;
+    }
+
+    public PacienteBean(int aInt) {
+        this.id = aInt;
     }
     
     public Integer getId_tipopago() {
@@ -228,6 +255,14 @@ public class PacienteBean {
 
     public void setId_usuario(Integer id_usuario) {
         this.id_usuario = id_usuario;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
     
     

@@ -40,15 +40,14 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.*;
-import java.math.*;
 
-public class UsuarioDao {
+public class PacienteDao {
 
     private String strTable = "paciente";
     private String strSQL = "select * from " + strTable + " WHERE 1=1 ";
     private Connection oConnection = null;
 
-    public UsuarioDao(Connection oPooledConnection) {
+    public PacienteDao(Connection oPooledConnection) {
         oConnection = oPooledConnection;
     }
 
@@ -113,37 +112,6 @@ public class UsuarioDao {
         return result;
     }
 
-    /////////////////////
-    public Long countNombreF() throws Exception {
-        PreparedStatement oPreparedStatement = null;
-        ResultSet oResultSet = null;
-        strSQL = "SELECT COUNT(*) FROM nombrefemenino";
-        Long iResult = 0L;
-        try {
-            oPreparedStatement = oConnection.prepareStatement(strSQL);
-            oResultSet = oPreparedStatement.executeQuery(strSQL);
-            if (oResultSet.next()) {
-                iResult = oResultSet.getLong("COUNT(*)");
-            } else {
-                String msg = this.getClass().getName() + ": getcount";
-                Log4j.errorLog(msg);
-                throw new Exception(msg);
-            }
-        } catch (Exception ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
-            Log4j.errorLog(msg, ex);
-            throw new Exception(msg, ex);
-        } finally {
-            if (oResultSet != null) {
-                oResultSet.close();
-            }
-            if (oPreparedStatement != null) {
-                oPreparedStatement.close();
-            }
-        }
-        return iResult;
-    }
-
     public String getNombreF(long id) throws Exception {
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
@@ -173,36 +141,6 @@ public class UsuarioDao {
     }
 
     /////////////////////
-    public Long countPrimerAp() throws Exception {
-        PreparedStatement oPreparedStatement = null;
-        ResultSet oResultSet = null;
-        strSQL = "SELECT COUNT(*) FROM apellido";
-        Long iResult = 0L;
-        try {
-            oPreparedStatement = oConnection.prepareStatement(strSQL);
-            oResultSet = oPreparedStatement.executeQuery(strSQL);
-            if (oResultSet.next()) {
-                iResult = oResultSet.getLong("COUNT(*)");
-            } else {
-                String msg = this.getClass().getName() + ": getcount";
-                Log4j.errorLog(msg);
-                throw new Exception(msg);
-            }
-        } catch (Exception ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
-            Log4j.errorLog(msg, ex);
-            throw new Exception(msg, ex);
-        } finally {
-            if (oResultSet != null) {
-                oResultSet.close();
-            }
-            if (oPreparedStatement != null) {
-                oPreparedStatement.close();
-            }
-        }
-        return iResult;
-    }
-
     public String getPrimerApe(long id) throws Exception {
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
@@ -232,36 +170,6 @@ public class UsuarioDao {
     }
 
     ////////////
-    public Long countSegAp() throws Exception {
-        PreparedStatement oPreparedStatement = null;
-        ResultSet oResultSet = null;
-        strSQL = "SELECT COUNT(*) FROM apellido";
-        Long iResult = 0L;
-        try {
-            oPreparedStatement = oConnection.prepareStatement(strSQL);
-            oResultSet = oPreparedStatement.executeQuery(strSQL);
-            if (oResultSet.next()) {
-                iResult = oResultSet.getLong("COUNT(*)");
-            } else {
-                String msg = this.getClass().getName() + ": getcount";
-                Log4j.errorLog(msg);
-                throw new Exception(msg);
-            }
-        } catch (Exception ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
-            Log4j.errorLog(msg, ex);
-            throw new Exception(msg, ex);
-        } finally {
-            if (oResultSet != null) {
-                oResultSet.close();
-            }
-            if (oPreparedStatement != null) {
-                oPreparedStatement.close();
-            }
-        }
-        return iResult;
-    }
-
     public String getSegundoApe(long id) throws Exception {
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
@@ -291,36 +199,6 @@ public class UsuarioDao {
     }
 
     ////////////
-    public Long countMunicipio() throws Exception {
-        PreparedStatement oPreparedStatement = null;
-        ResultSet oResultSet = null;
-        strSQL = "SELECT COUNT(*) FROM municipio";
-        Long iResult = 0L;
-        try {
-            oPreparedStatement = oConnection.prepareStatement(strSQL);
-            oResultSet = oPreparedStatement.executeQuery(strSQL);
-            if (oResultSet.next()) {
-                iResult = oResultSet.getLong("COUNT(*)");
-            } else {
-                String msg = this.getClass().getName() + ": getcount";
-                Log4j.errorLog(msg);
-                throw new Exception(msg);
-            }
-        } catch (Exception ex) {
-            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
-            Log4j.errorLog(msg, ex);
-            throw new Exception(msg, ex);
-        } finally {
-            if (oResultSet != null) {
-                oResultSet.close();
-            }
-            if (oPreparedStatement != null) {
-                oPreparedStatement.close();
-            }
-        }
-        return iResult;
-    }
-
     public String getMunicipio(long id) throws Exception {
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
@@ -349,21 +227,18 @@ public class UsuarioDao {
         return result;
     }
 
-    //////
-    public Long countProv() throws Exception {
+    public Integer getProvinciaMunicipio(long id) throws Exception {
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
-        strSQL = "SELECT COUNT(*) FROM provincia";
-        Long iResult = 0L;
+        strSQL = "select * from municipio WHERE 1=1 ";
+        strSQL += " AND id=" + id;
+        Integer result = 0;
         try {
             oPreparedStatement = oConnection.prepareStatement(strSQL);
             oResultSet = oPreparedStatement.executeQuery(strSQL);
             if (oResultSet.next()) {
-                iResult = oResultSet.getLong("COUNT(*)");
+                result = oResultSet.getInt("id_provincia");
             } else {
-                String msg = this.getClass().getName() + ": getcount";
-                Log4j.errorLog(msg);
-                throw new Exception(msg);
             }
         } catch (Exception ex) {
             String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
@@ -377,10 +252,39 @@ public class UsuarioDao {
                 oPreparedStatement.close();
             }
         }
-        return iResult;
+        return result;
     }
 
-    public String getProvincia(long IDProv) throws Exception {
+    public Integer getComunidadMunicipio(long id) throws Exception {
+        PreparedStatement oPreparedStatement = null;
+        ResultSet oResultSet = null;
+        strSQL = "select * from municipio WHERE 1=1 ";
+        strSQL += " AND id=" + id;
+        Integer result = 0;
+        try {
+            oPreparedStatement = oConnection.prepareStatement(strSQL);
+            oResultSet = oPreparedStatement.executeQuery(strSQL);
+            if (oResultSet.next()) {
+                result = oResultSet.getInt("id_comunidad");
+            } else {
+            }
+        } catch (Exception ex) {
+            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
+            Log4j.errorLog(msg, ex);
+            throw new Exception(msg, ex);
+        } finally {
+            if (oResultSet != null) {
+                oResultSet.close();
+            }
+            if (oPreparedStatement != null) {
+                oPreparedStatement.close();
+            }
+        }
+        return result;
+    }
+
+    //////
+    public String getProvincia(Integer IDProv) throws Exception {
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
         strSQL = "select * from provincia WHERE 1=1 ";
@@ -408,21 +312,18 @@ public class UsuarioDao {
         return result;
     }
 
-    //////
-    public Long countVia() throws Exception {
+    public String getComunidad(Integer IDProv) throws Exception {
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
-        strSQL = "SELECT COUNT(*) FROM via";
-        Long iResult = 0L;
+        strSQL = "select * from comunidad WHERE 1=1 ";
+        strSQL += " AND id=" + IDProv;
+        String result = "";
         try {
             oPreparedStatement = oConnection.prepareStatement(strSQL);
             oResultSet = oPreparedStatement.executeQuery(strSQL);
             if (oResultSet.next()) {
-                iResult = oResultSet.getLong("COUNT(*)");
+                result = oResultSet.getString("comunidad");
             } else {
-                String msg = this.getClass().getName() + ": getcount";
-                Log4j.errorLog(msg);
-                throw new Exception(msg);
             }
         } catch (Exception ex) {
             String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
@@ -436,9 +337,10 @@ public class UsuarioDao {
                 oPreparedStatement.close();
             }
         }
-        return iResult;
+        return result;
     }
 
+    //////
     public String getVia(long id) throws Exception {
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
@@ -467,7 +369,7 @@ public class UsuarioDao {
         return result;
     }
 
-    //////    
+    //////
     public Integer set(PacienteBean oBean) throws Exception {
         PreparedStatement oPreparedStatement = null;
         Integer iResult = 0;
@@ -506,38 +408,22 @@ public class UsuarioDao {
             strSQL += EncodingUtilHelper.quotate(oBean.getSegundo_apellido()) + ",";
             strSQL += EncodingUtilHelper.quotate(oBean.getDireccion()) + ",";
             strSQL += EncodingUtilHelper.quotate(oBean.getMunicipio()) + ",";
-            strSQL += oBean.getCodigo_postal() + ",";
+            strSQL += EncodingUtilHelper.quotate(oBean.getCodigo_postal()) + ",";
             strSQL += EncodingUtilHelper.quotate(oBean.getProvincia()) + ",";
             strSQL += EncodingUtilHelper.quotate(oBean.getPais()) + ",";
             strSQL += EncodingUtilHelper.quotate(oBean.getEmail()) + ",";
-            strSQL += oBean.getTlf1() + ",";
-            strSQL += oBean.getTlf2() + ",";
+            strSQL += EncodingUtilHelper.quotate(oBean.getTlf1()) + ",";
+            strSQL += EncodingUtilHelper.quotate(oBean.getTlf2()) + ",";
             strSQL += EncodingUtilHelper.quotate(oBean.getNombre_padre()) + ",";
             strSQL += EncodingUtilHelper.quotate(oBean.getNombre_madre()) + ",";
-            strSQL += oBean.getFechaNace() + ",";
+            strSQL += EncodingUtilHelper.stringifyAndQuotate(oBean.getFechaNace()) + ",";
+            strSQL += EncodingUtilHelper.quotate(oBean.getCiudadNace()) + ",";
             strSQL += EncodingUtilHelper.quotate(oBean.getPais()) + ",";
-            strSQL += oBean.getSip_ase() + ",";
+            strSQL += EncodingUtilHelper.quotate(oBean.getSip_ase()) + ",";
             strSQL += oBean.getId_tipopago() + ",";
             strSQL += oBean.getSexo() + ",";
             strSQL += oBean.getId_usuario();
             strSQL += ")";
-            /**
-             * } else { insert = false; strSQL = "UPDATE " + strTable; strSQL +=
-             * " SET "; strSQL += "dni=" +
-             * EncodingUtilHelper.quotate(oBean.getDni()) + ", "; strSQL +=
-             * "nombre=" + EncodingUtilHelper.quotate(oBean.getNombre()) + ",";
-             * strSQL += "primer_apellido=" +
-             * EncodingUtilHelper.quotate(oBean.getPrimer_apellido()) + ",";
-             * strSQL += "segundo_apellido=" +
-             * EncodingUtilHelper.quotate(oBean.getSegundo_apellido()) + ",";
-             * strSQL += "login=" + EncodingUtilHelper.quotate(oBean.getLogin())
-             * + ","; strSQL += "pass=" +
-             * EncodingUtilHelper.quotate(oBean.getPass()) + ","; strSQL +=
-             * "email=" + oBean.getEmail() + ","; strSQL += "id_tipousuario=" +
-             * oBean.getId_tipousuario() + " "; strSQL += "WHERE id=" +
-             * oBean.getId();
-            }
-             */
             oPreparedStatement = oConnection.prepareStatement(strSQL, Statement.RETURN_GENERATED_KEYS);
             iResult = oPreparedStatement.executeUpdate();
             if (iResult < 1) {
@@ -581,6 +467,55 @@ public class UsuarioDao {
         return iResult;
     }
 
+    public PacienteBean get(PacienteBean oBean) throws Exception {
+        PreparedStatement oPreparedStatement = null;
+        ResultSet oResultSet = null;
+        strSQL = "select * from " + strTable + " WHERE 1=1 ";
+        strSQL += " AND id=" + oBean.getId();
+        try {
+            oPreparedStatement = oConnection.prepareStatement(strSQL);
+            oResultSet = oPreparedStatement.executeQuery(strSQL);
+            if (oResultSet.next()) {
+                oBean.setDni(oResultSet.getString("dni"));
+                oBean.setNombre(oResultSet.getString("nombre"));
+                oBean.setPrimer_apellido(oResultSet.getString("primer_apellido"));
+                oBean.setSegundo_apellido(oResultSet.getString("segundo_apellido"));
+                oBean.setSegundo_apellido(oResultSet.getString("segundo_apellido"));
+                oBean.setDireccion(oResultSet.getString("direccion"));
+                oBean.setMunicipio(oResultSet.getString("ciudad"));
+                oBean.setCodigo_postal(oResultSet.getString("codigo_postal"));
+                oBean.setProvincia(oResultSet.getString("provincia"));
+                oBean.setPais(oResultSet.getString("pais"));
+                oBean.setEmail(oResultSet.getString("email"));
+                oBean.setTlf1(oResultSet.getString("telefono1"));
+                oBean.setTlf2(oResultSet.getString("telefono1"));
+                oBean.setNombre_padre(oResultSet.getString("nombre_padre"));
+                oBean.setNombre_madre(oResultSet.getString("nombre_madre"));
+                oBean.setFechaNace(oResultSet.getDate("fecha_nacimiento"));
+                oBean.setCiudadNace(oResultSet.getString("ciudad_nacimiento"));
+                oBean.setPaisNace(oResultSet.getString("pais_nacimiento"));
+                oBean.setSip_ase(oResultSet.getString("sip_aseguradora"));
+                oBean.setId_tipopago(oResultSet.getInt("id_tipopago"));
+                oBean.setSexo(oResultSet.getInt("id_sexo"));
+                oBean.setId_usuario(oResultSet.getInt("id_usuario"));
+            } else {
+                oBean = null;
+            }
+        } catch (Exception ex) {
+            String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
+            Log4j.errorLog(msg, ex);
+            throw new Exception(msg, ex);
+        } finally {
+            if (oResultSet != null) {
+                oResultSet.close();
+            }
+            if (oPreparedStatement != null) {
+                oPreparedStatement.close();
+            }
+        }
+        return oBean;
+    }
+
     public Long getCount(ArrayList<FilterBeanHelper> alFilter) throws Exception {
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
@@ -612,7 +547,7 @@ public class UsuarioDao {
         return iResult;
     }
 
-    /*public ArrayList<PacienteBean> getPage(int intRegsPerPag, int intPage, LinkedHashMap<String, String> hmOrder, ArrayList<FilterBeanHelper> alFilter) throws Exception {
+    public ArrayList<PacienteBean> getPage(int intRegsPerPag, int intPage, LinkedHashMap<String, String> hmOrder, ArrayList<FilterBeanHelper> alFilter) throws Exception {
         String strSQL1 = strSQL;
         strSQL1 += SqlBuilder.buildSqlFilter(alFilter);
         strSQL1 += SqlBuilder.buildSqlOrder(hmOrder);
@@ -624,7 +559,7 @@ public class UsuarioDao {
             oPreparedStatement = oConnection.prepareStatement(strSQL1);
             oResultSet = oPreparedStatement.executeQuery(strSQL1);
             while (oResultSet.next()) {
-                aloBean.add(this.get(new PacienteBean(oResultSet.getInt("id")), AppConfigurationHelper.getJsonMsgDepth()));
+                aloBean.add(this.get(new PacienteBean(oResultSet.getInt("id"))));
             }
         } catch (Exception ex) {
             String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
@@ -639,5 +574,5 @@ public class UsuarioDao {
             }
         }
         return aloBean;
-    }*/
+    }
 }

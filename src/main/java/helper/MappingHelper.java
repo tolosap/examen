@@ -29,7 +29,7 @@
 package helper;
 
 import bean.ReplyBean;
-import service.UsuarioService;
+import service.PacienteService;
 import javax.servlet.http.HttpServletRequest;
 
 public class MappingHelper {
@@ -39,7 +39,7 @@ public class MappingHelper {
         ReplyBean oReplyBean = null;
         Boolean oBool = null;
 
-        UsuarioService oUsuarioService = new UsuarioService(oRequest);
+        PacienteService oUsuarioService = new PacienteService(oRequest);
         switch (op) {
             case "rellena":
                 oReplyBean = oUsuarioService.rellenar();
@@ -47,9 +47,9 @@ public class MappingHelper {
             case "vacia":
                 oReplyBean = oUsuarioService.remove();
                 break;
-            /*case "getpage":
+            case "dump":
                 oReplyBean = oUsuarioService.getpage();
-                break;*/
+                break;
             case "cuenta":
                 oReplyBean = oUsuarioService.getcount();
                 break;
