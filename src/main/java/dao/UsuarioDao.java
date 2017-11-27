@@ -51,20 +51,14 @@ public class UsuarioDao {
     public UsuarioDao(Connection oPooledConnection) {
         oConnection = oPooledConnection;
     }
-    
-    /*public int mathRandomGenero() throws Exception{
-       int numR = (int) Math.floor(Math.random()*3);
-       return numR;
-    }*/
+
     ///////////////
-    
-    
-    public Long countNombreM() throws Exception{
+    public Long countGen(String strCount) throws Exception {
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
-        strSQL = "SELECT COUNT(*) FROM nombremasculino";
+        strSQL = "SELECT COUNT(*) FROM " + strCount;
         Long iResult = 0L;
-        try{
+        try {
             oPreparedStatement = oConnection.prepareStatement(strSQL);
             oResultSet = oPreparedStatement.executeQuery(strSQL);
             if (oResultSet.next()) {
@@ -74,7 +68,7 @@ public class UsuarioDao {
                 Log4j.errorLog(msg);
                 throw new Exception(msg);
             }
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
             Log4j.errorLog(msg, ex);
             throw new Exception(msg, ex);
@@ -88,7 +82,7 @@ public class UsuarioDao {
         }
         return iResult;
     }
-    
+
     public String getNombreM(long id) throws Exception {
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
@@ -98,11 +92,11 @@ public class UsuarioDao {
         try {
             oPreparedStatement = oConnection.prepareStatement(strSQL);
             oResultSet = oPreparedStatement.executeQuery(strSQL);
-            
+
             if (oResultSet.next()) {
-                result =oResultSet.getString("nombre");
+                result = oResultSet.getString("nombre");
             } else {
-               
+
             }
         } catch (Exception ex) {
             String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
@@ -118,16 +112,14 @@ public class UsuarioDao {
         }
         return result;
     }
-    
-    
+
     /////////////////////
-    
-    public Long countNombreF() throws Exception{
+    public Long countNombreF() throws Exception {
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
         strSQL = "SELECT COUNT(*) FROM nombrefemenino";
         Long iResult = 0L;
-        try{
+        try {
             oPreparedStatement = oConnection.prepareStatement(strSQL);
             oResultSet = oPreparedStatement.executeQuery(strSQL);
             if (oResultSet.next()) {
@@ -137,7 +129,7 @@ public class UsuarioDao {
                 Log4j.errorLog(msg);
                 throw new Exception(msg);
             }
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
             Log4j.errorLog(msg, ex);
             throw new Exception(msg, ex);
@@ -151,19 +143,19 @@ public class UsuarioDao {
         }
         return iResult;
     }
-    
+
     public String getNombreF(long id) throws Exception {
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
         strSQL = "select * from nombrefemenino WHERE 1=1 ";
         strSQL += " AND id=" + id;
-        String result ="";
+        String result = "";
         try {
             oPreparedStatement = oConnection.prepareStatement(strSQL);
-            oResultSet = oPreparedStatement.executeQuery(strSQL);            
+            oResultSet = oPreparedStatement.executeQuery(strSQL);
             if (oResultSet.next()) {
                 result = oResultSet.getString("nombre");
-            } else {               
+            } else {
             }
         } catch (Exception ex) {
             String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
@@ -179,16 +171,14 @@ public class UsuarioDao {
         }
         return result;
     }
-    
-    
+
     /////////////////////
-    
-    public Long countPrimerAp() throws Exception{
+    public Long countPrimerAp() throws Exception {
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
         strSQL = "SELECT COUNT(*) FROM apellido";
         Long iResult = 0L;
-        try{
+        try {
             oPreparedStatement = oConnection.prepareStatement(strSQL);
             oResultSet = oPreparedStatement.executeQuery(strSQL);
             if (oResultSet.next()) {
@@ -198,7 +188,7 @@ public class UsuarioDao {
                 Log4j.errorLog(msg);
                 throw new Exception(msg);
             }
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
             Log4j.errorLog(msg, ex);
             throw new Exception(msg, ex);
@@ -212,19 +202,19 @@ public class UsuarioDao {
         }
         return iResult;
     }
-    
+
     public String getPrimerApe(long id) throws Exception {
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
         strSQL = "select * from apellido WHERE 1=1 ";
         strSQL += " AND id=" + id;
-        String result ="";
+        String result = "";
         try {
             oPreparedStatement = oConnection.prepareStatement(strSQL);
-            oResultSet = oPreparedStatement.executeQuery(strSQL);            
+            oResultSet = oPreparedStatement.executeQuery(strSQL);
             if (oResultSet.next()) {
                 result = oResultSet.getString("apellido");
-            } else {               
+            } else {
             }
         } catch (Exception ex) {
             String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
@@ -240,16 +230,14 @@ public class UsuarioDao {
         }
         return result;
     }
-    
+
     ////////////
-    
-    
-    public Long countSegAp() throws Exception{
+    public Long countSegAp() throws Exception {
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
         strSQL = "SELECT COUNT(*) FROM apellido";
         Long iResult = 0L;
-        try{
+        try {
             oPreparedStatement = oConnection.prepareStatement(strSQL);
             oResultSet = oPreparedStatement.executeQuery(strSQL);
             if (oResultSet.next()) {
@@ -259,7 +247,7 @@ public class UsuarioDao {
                 Log4j.errorLog(msg);
                 throw new Exception(msg);
             }
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
             Log4j.errorLog(msg, ex);
             throw new Exception(msg, ex);
@@ -273,19 +261,19 @@ public class UsuarioDao {
         }
         return iResult;
     }
-    
+
     public String getSegundoApe(long id) throws Exception {
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
         strSQL = "select * from apellido WHERE 1=1 ";
         strSQL += " AND id=" + id;
-        String result ="";
+        String result = "";
         try {
             oPreparedStatement = oConnection.prepareStatement(strSQL);
-            oResultSet = oPreparedStatement.executeQuery(strSQL);            
+            oResultSet = oPreparedStatement.executeQuery(strSQL);
             if (oResultSet.next()) {
                 result = oResultSet.getString("apellido");
-            } else {               
+            } else {
             }
         } catch (Exception ex) {
             String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
@@ -301,17 +289,14 @@ public class UsuarioDao {
         }
         return result;
     }
-    
+
     ////////////
-    
-    
-        
-    public Long countMunicipio() throws Exception{
+    public Long countMunicipio() throws Exception {
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
         strSQL = "SELECT COUNT(*) FROM municipio";
         Long iResult = 0L;
-        try{
+        try {
             oPreparedStatement = oConnection.prepareStatement(strSQL);
             oResultSet = oPreparedStatement.executeQuery(strSQL);
             if (oResultSet.next()) {
@@ -321,7 +306,7 @@ public class UsuarioDao {
                 Log4j.errorLog(msg);
                 throw new Exception(msg);
             }
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
             Log4j.errorLog(msg, ex);
             throw new Exception(msg, ex);
@@ -335,19 +320,19 @@ public class UsuarioDao {
         }
         return iResult;
     }
-    
+
     public String getMunicipio(long id) throws Exception {
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
         strSQL = "select * from municipio WHERE 1=1 ";
         strSQL += " AND id=" + id;
-        String result ="";
+        String result = "";
         try {
             oPreparedStatement = oConnection.prepareStatement(strSQL);
-            oResultSet = oPreparedStatement.executeQuery(strSQL);            
+            oResultSet = oPreparedStatement.executeQuery(strSQL);
             if (oResultSet.next()) {
                 result = oResultSet.getString("nombre");
-            } else {               
+            } else {
             }
         } catch (Exception ex) {
             String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
@@ -363,18 +348,14 @@ public class UsuarioDao {
         }
         return result;
     }
-    
-    
-    
+
     //////
-    
-    
-    public Long countProv() throws Exception{
+    public Long countProv() throws Exception {
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
         strSQL = "SELECT COUNT(*) FROM provincia";
         Long iResult = 0L;
-        try{
+        try {
             oPreparedStatement = oConnection.prepareStatement(strSQL);
             oResultSet = oPreparedStatement.executeQuery(strSQL);
             if (oResultSet.next()) {
@@ -384,7 +365,7 @@ public class UsuarioDao {
                 Log4j.errorLog(msg);
                 throw new Exception(msg);
             }
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
             Log4j.errorLog(msg, ex);
             throw new Exception(msg, ex);
@@ -398,19 +379,19 @@ public class UsuarioDao {
         }
         return iResult;
     }
-    
+
     public String getProvincia(long IDProv) throws Exception {
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
         strSQL = "select * from provincia WHERE 1=1 ";
         strSQL += " AND id=" + IDProv;
-        String result ="";
+        String result = "";
         try {
             oPreparedStatement = oConnection.prepareStatement(strSQL);
-            oResultSet = oPreparedStatement.executeQuery(strSQL);            
+            oResultSet = oPreparedStatement.executeQuery(strSQL);
             if (oResultSet.next()) {
                 result = oResultSet.getString("provincia");
-            } else {               
+            } else {
             }
         } catch (Exception ex) {
             String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
@@ -426,17 +407,14 @@ public class UsuarioDao {
         }
         return result;
     }
-    
-    
-    
+
     //////
-        
-    public Long countVia() throws Exception{
+    public Long countVia() throws Exception {
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
         strSQL = "SELECT COUNT(*) FROM via";
         Long iResult = 0L;
-        try{
+        try {
             oPreparedStatement = oConnection.prepareStatement(strSQL);
             oResultSet = oPreparedStatement.executeQuery(strSQL);
             if (oResultSet.next()) {
@@ -446,7 +424,7 @@ public class UsuarioDao {
                 Log4j.errorLog(msg);
                 throw new Exception(msg);
             }
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
             Log4j.errorLog(msg, ex);
             throw new Exception(msg, ex);
@@ -460,19 +438,19 @@ public class UsuarioDao {
         }
         return iResult;
     }
-    
+
     public String getVia(long id) throws Exception {
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
         strSQL = "select * from via WHERE 1=1 ";
         strSQL += " AND id=" + id;
-        String result ="";
+        String result = "";
         try {
             oPreparedStatement = oConnection.prepareStatement(strSQL);
-            oResultSet = oPreparedStatement.executeQuery(strSQL);            
+            oResultSet = oPreparedStatement.executeQuery(strSQL);
             if (oResultSet.next()) {
                 result = oResultSet.getString("via");
-            } else {               
+            } else {
             }
         } catch (Exception ex) {
             String msg = this.getClass().getName() + ":" + (ex.getStackTrace()[0]).getMethodName();
@@ -488,76 +466,78 @@ public class UsuarioDao {
         }
         return result;
     }
-    
-    //////    
 
+    //////    
     public Integer set(PacienteBean oBean) throws Exception {
         PreparedStatement oPreparedStatement = null;
         Integer iResult = 0;
         Boolean insert = true;
         try {
             //if (oBean.getId() == null || oBean.getId() <= 0) {
-                strSQL = "INSERT INTO " + strTable;
-                strSQL += "(";
-                strSQL += "dni,";
-                strSQL += "nombre,";
-                strSQL += "primer_apellido,";
-                strSQL += "segundo_apellido,";
-                strSQL += "direccion,";
-                strSQL += "ciudad,";
-                strSQL += "codigo_postal,";
-                strSQL += "provincia,";
-                strSQL += "pais,";
-                strSQL += "email,";
-                strSQL += "telefono1,";
-                strSQL += "telefono2,";
-                strSQL += "nombre_padre,";
-                strSQL += "nombre_madre,";
-                strSQL += "fecha_nacimiento,";
-                strSQL += "ciudad_nacimiento,";
-                strSQL += "pais_nacimiento,";
-                strSQL += "sip_aseguradora,";
-                strSQL += "id_tipopago,";
-                strSQL += "id_sexo,";
-                strSQL += "id_usuario";
-                strSQL += ")";
-                strSQL += " VALUES ";
-                strSQL += "(";
-                strSQL += EncodingUtilHelper.quotate(oBean.getDni()) + ",";
-                strSQL += EncodingUtilHelper.quotate(oBean.getNombre()) + ",";
-                strSQL += EncodingUtilHelper.quotate(oBean.getPrimer_apellido()) + ",";
-                strSQL += EncodingUtilHelper.quotate(oBean.getSegundo_apellido()) + ",";
-                strSQL += EncodingUtilHelper.quotate(oBean.getDireccion()) + ",";
-                strSQL += EncodingUtilHelper.quotate(oBean.getMunicipio()) + ",";
-                strSQL += oBean.getCodigo_postal()+ ",";
-                strSQL += EncodingUtilHelper.quotate(oBean.getProvincia()) + ",";
-                strSQL += EncodingUtilHelper.quotate(oBean.getPais()) + ",";
-                strSQL += EncodingUtilHelper.quotate(oBean.getEmail()) + ",";
-                strSQL += oBean.getTlf1()+ ",";
-                strSQL += oBean.getTlf2()+ ",";
-                strSQL += EncodingUtilHelper.quotate(oBean.getNombre_padre()) + ",";
-                strSQL += EncodingUtilHelper.quotate(oBean.getNombre_madre()) + ",";
-                strSQL += oBean.getFechaNace()+ ",";
-                strSQL += EncodingUtilHelper.quotate(oBean.getPais()) + ",";
-                strSQL += oBean.getSip_ase()+ ",";
-                strSQL += oBean.getId_tipopago()+ ",";
-                strSQL += oBean.getSexo()+ ",";
-                strSQL += oBean.getId_usuario();
-                strSQL += ")";
-            /**} else {
-                insert = false;
-                strSQL = "UPDATE " + strTable;
-                strSQL += " SET ";
-                strSQL += "dni=" + EncodingUtilHelper.quotate(oBean.getDni()) + ", ";
-                strSQL += "nombre=" + EncodingUtilHelper.quotate(oBean.getNombre()) + ",";
-                strSQL += "primer_apellido=" + EncodingUtilHelper.quotate(oBean.getPrimer_apellido()) + ",";
-                strSQL += "segundo_apellido=" + EncodingUtilHelper.quotate(oBean.getSegundo_apellido()) + ",";
-                strSQL += "login=" + EncodingUtilHelper.quotate(oBean.getLogin()) + ",";
-                strSQL += "pass=" + EncodingUtilHelper.quotate(oBean.getPass()) + ",";
-                strSQL += "email=" + oBean.getEmail() + ",";
-                strSQL += "id_tipousuario=" + oBean.getId_tipousuario() + " ";
-                strSQL += "WHERE id=" + oBean.getId();
-            }*/
+            strSQL = "INSERT INTO " + strTable;
+            strSQL += "(";
+            strSQL += "dni,";
+            strSQL += "nombre,";
+            strSQL += "primer_apellido,";
+            strSQL += "segundo_apellido,";
+            strSQL += "direccion,";
+            strSQL += "ciudad,";
+            strSQL += "codigo_postal,";
+            strSQL += "provincia,";
+            strSQL += "pais,";
+            strSQL += "email,";
+            strSQL += "telefono1,";
+            strSQL += "telefono2,";
+            strSQL += "nombre_padre,";
+            strSQL += "nombre_madre,";
+            strSQL += "fecha_nacimiento,";
+            strSQL += "ciudad_nacimiento,";
+            strSQL += "pais_nacimiento,";
+            strSQL += "sip_aseguradora,";
+            strSQL += "id_tipopago,";
+            strSQL += "id_sexo,";
+            strSQL += "id_usuario";
+            strSQL += ")";
+            strSQL += " VALUES ";
+            strSQL += "(";
+            strSQL += EncodingUtilHelper.quotate(oBean.getDni()) + ",";
+            strSQL += EncodingUtilHelper.quotate(oBean.getNombre()) + ",";
+            strSQL += EncodingUtilHelper.quotate(oBean.getPrimer_apellido()) + ",";
+            strSQL += EncodingUtilHelper.quotate(oBean.getSegundo_apellido()) + ",";
+            strSQL += EncodingUtilHelper.quotate(oBean.getDireccion()) + ",";
+            strSQL += EncodingUtilHelper.quotate(oBean.getMunicipio()) + ",";
+            strSQL += oBean.getCodigo_postal() + ",";
+            strSQL += EncodingUtilHelper.quotate(oBean.getProvincia()) + ",";
+            strSQL += EncodingUtilHelper.quotate(oBean.getPais()) + ",";
+            strSQL += EncodingUtilHelper.quotate(oBean.getEmail()) + ",";
+            strSQL += oBean.getTlf1() + ",";
+            strSQL += oBean.getTlf2() + ",";
+            strSQL += EncodingUtilHelper.quotate(oBean.getNombre_padre()) + ",";
+            strSQL += EncodingUtilHelper.quotate(oBean.getNombre_madre()) + ",";
+            strSQL += oBean.getFechaNace() + ",";
+            strSQL += EncodingUtilHelper.quotate(oBean.getPais()) + ",";
+            strSQL += oBean.getSip_ase() + ",";
+            strSQL += oBean.getId_tipopago() + ",";
+            strSQL += oBean.getSexo() + ",";
+            strSQL += oBean.getId_usuario();
+            strSQL += ")";
+            /**
+             * } else { insert = false; strSQL = "UPDATE " + strTable; strSQL +=
+             * " SET "; strSQL += "dni=" +
+             * EncodingUtilHelper.quotate(oBean.getDni()) + ", "; strSQL +=
+             * "nombre=" + EncodingUtilHelper.quotate(oBean.getNombre()) + ",";
+             * strSQL += "primer_apellido=" +
+             * EncodingUtilHelper.quotate(oBean.getPrimer_apellido()) + ",";
+             * strSQL += "segundo_apellido=" +
+             * EncodingUtilHelper.quotate(oBean.getSegundo_apellido()) + ",";
+             * strSQL += "login=" + EncodingUtilHelper.quotate(oBean.getLogin())
+             * + ","; strSQL += "pass=" +
+             * EncodingUtilHelper.quotate(oBean.getPass()) + ","; strSQL +=
+             * "email=" + oBean.getEmail() + ","; strSQL += "id_tipousuario=" +
+             * oBean.getId_tipousuario() + " "; strSQL += "WHERE id=" +
+             * oBean.getId();
+            }
+             */
             oPreparedStatement = oConnection.prepareStatement(strSQL, Statement.RETURN_GENERATED_KEYS);
             iResult = oPreparedStatement.executeUpdate();
             if (iResult < 1) {
@@ -582,10 +562,9 @@ public class UsuarioDao {
         return iResult;
     }
 
-    
-    public Boolean remove(Integer id) throws Exception {
+    public Boolean remove() throws Exception {
         boolean iResult = false;
-        strSQL = "DELETE FROM " + strTable + " WHERE 1";
+        strSQL = "DELETE FROM " + strTable + " WHERE 1=1";
         PreparedStatement oPreparedStatement = null;
         try {
             oPreparedStatement = oConnection.prepareStatement(strSQL);
@@ -602,7 +581,6 @@ public class UsuarioDao {
         return iResult;
     }
 
-  
     public Long getCount(ArrayList<FilterBeanHelper> alFilter) throws Exception {
         PreparedStatement oPreparedStatement = null;
         ResultSet oResultSet = null;
@@ -634,7 +612,6 @@ public class UsuarioDao {
         return iResult;
     }
 
-    
     /*public ArrayList<PacienteBean> getPage(int intRegsPerPag, int intPage, LinkedHashMap<String, String> hmOrder, ArrayList<FilterBeanHelper> alFilter) throws Exception {
         String strSQL1 = strSQL;
         strSQL1 += SqlBuilder.buildSqlFilter(alFilter);
@@ -663,7 +640,4 @@ public class UsuarioDao {
         }
         return aloBean;
     }*/
-
-    
-
 }

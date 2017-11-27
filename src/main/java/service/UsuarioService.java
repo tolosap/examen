@@ -66,50 +66,50 @@ public class UsuarioService {
             oPooledConnection = AppConfigurationHelper.getSourceConnection();
             oConnection = oPooledConnection.newConnection();
             for (int i = 1; i <= numReg; i++) {
-
                 PacienteBean oPacienteBean = new PacienteBean();
                 UsuarioDao oDao = new UsuarioDao(oConnection);
                 
                 oPacienteBean.setDni("23321991Z");
 
                 int numRNom = (int) Math.floor(Math.random() * (2 - 1 + 1) + 1);
+                
                 //se escoge el sexo
                 if (numRNom == 1) {
-                    long numRNombreM = (long) Math.floor(Math.random() * (oDao.countNombreM()) + 1);
+                    long numRNombreM = (long) Math.floor(Math.random() * (oDao.countGen("nombremasculino")) + 1);
                     oPacienteBean.setNombre(oDao.getNombreM(numRNombreM));
                 } else {
-                    long numRNombreF = (long) Math.floor(Math.random() * (oDao.countNombreF()) + 1);
+                    long numRNombreF = (long) Math.floor(Math.random() * (oDao.countGen("nombrefemenino")) + 1);
                     oPacienteBean.setNombre(oDao.getNombreF(numRNombreF));
                 }
                 //1er ape
-                long numRPrimApell = (long) Math.floor(Math.random() * (oDao.countPrimerAp()) + 1);
+                long numRPrimApell = (long) Math.floor(Math.random() * (oDao.countGen("apellido")) + 1);
                 oPacienteBean.setPrimer_apellido(oDao.getPrimerApe(numRPrimApell));
 
                 //2do apel
-                long numR2doApe = (long) Math.floor(Math.random() * (oDao.countSegAp()) + 1);
+                long numR2doApe = (long) Math.floor(Math.random() * (oDao.countGen("apellido")) + 1);
                 oPacienteBean.setSegundo_apellido(oDao.getPrimerApe(numR2doApe));
 
                 //Direccion
-                long via = (long) Math.floor(Math.random() * (oDao.countVia()) + 1);
+                long via = (long) Math.floor(Math.random() * (oDao.countGen("via")) + 1);
                 String viaDirecc = oDao.getVia(via);
                 int numRDirec = (int) Math.floor(Math.random() * 3);
 
                 if (numRDirec == 1) {
-                    long numRDirecM = (long) Math.floor(Math.random() * (oDao.countNombreM()) + 1);
+                    long numRDirecM = (long) Math.floor(Math.random() * (oDao.countGen("nombremasculino")) + 1);
                     String direcM = (oDao.getNombreM(numRDirecM));
-                    long numRDirecAp = (long) Math.floor(Math.random() * (oDao.countPrimerAp()) + 1);
+                    long numRDirecAp = (long) Math.floor(Math.random() * (oDao.countGen("apellido")) + 1);
                     String direcAp = (oDao.getPrimerApe(numRDirecAp));
                     oPacienteBean.setDireccion(viaDirecc + " de " + direcM + " " + direcAp);
                 } else {
-                    long numRDirecF = (long) Math.floor(Math.random() * (oDao.countNombreF()) + 1);
+                    long numRDirecF = (long) Math.floor(Math.random() * (oDao.countGen("nombrefemenino")) + 1);
                     String direcF = (oDao.getNombreM(numRDirecF));
-                    long numRDirecAp = (long) Math.floor(Math.random() * (oDao.countPrimerAp()) + 1);
+                    long numRDirecAp = (long) Math.floor(Math.random() * (oDao.countGen("apellido")) + 1);
                     String direcAp = (oDao.getPrimerApe(numRDirecAp));
                     oPacienteBean.setDireccion(viaDirecc + " de " + direcF + " " + direcAp);
                 }
 
                 //Municipio
-                long numRMunicipio = (long) Math.floor(Math.random() * (oDao.countMunicipio()) + 1);
+                long numRMunicipio = (long) Math.floor(Math.random() * (oDao.countGen("municipio")) + 1);
                 oPacienteBean.setMunicipio(oDao.getMunicipio(numRMunicipio));
 
                 //CP
@@ -147,11 +147,11 @@ public class UsuarioService {
                 }
 
                 //nombre_padre
-                long numRNombrePadre = (long) Math.floor(Math.random() * (oDao.countNombreM()) + 1);
+                long numRNombrePadre = (long) Math.floor(Math.random() * (oDao.countGen("nombremasculino")) + 1);
                 oPacienteBean.setNombre_padre(oDao.getNombreM(numRNombrePadre));
 
                 //mnombre_madre
-                long numRNombreMadre = (long) Math.floor(Math.random() * (oDao.countNombreF()) + 1);
+                long numRNombreMadre = (long) Math.floor(Math.random() * (oDao.countGen("nombrefemenino")) + 1);
                 oPacienteBean.setNombre_madre(oDao.getNombreF(numRNombreMadre));
 
                 //Fecha nacimiento
@@ -159,14 +159,14 @@ public class UsuarioService {
                 oPacienteBean.setFechaNace(fecha);
 
                 //ciudad nace FALTA
-                long numRCid = (long) Math.floor(Math.random() * (oDao.countMunicipio()) + 1);
+                long numRCid = (long) Math.floor(Math.random() * (oDao.countGen("municipio")) + 1);
                 oPacienteBean.setCiudadNace(oDao.getMunicipio(numRCid) + " ");
 
                 //pais nac
                 oPacienteBean.setPaisNace("España");
 
                 //sip aseguradora
-                long numRAseg = (long) Math.floor(Math.random() * 10 + 1);
+                long numRAseg = (long) Math.floor(Math.random() * (10 - 1 + 1) + 1);
                 oPacienteBean.setSip_ase(numRAseg);
 
                 //tipo pago
@@ -291,7 +291,7 @@ public class UsuarioService {
             oConnection = oPooledConnection.newConnection();
 
             UsuarioDao oDao = new UsuarioDao(oConnection);
-            iResult = oDao.remove(1);
+            iResult = oDao.remove();
 
             Gson oGson = AppConfigurationHelper.getGson();
             //String strJson = oGson.toJson(iResult);

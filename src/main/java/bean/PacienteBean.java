@@ -12,30 +12,29 @@ import java.util.Date;
  * @author a023321991z
  */
 public class PacienteBean {
-    private Integer id;
     private String dni;
     private String nombre;
     private String primer_apellido;
     private String segundo_apellido;
     private String direccion;
     private String municipio;
-    private Long codigo_postal;
+    private String codigo_postal;
     private String provincia;
     private String pais;
     private String email;
-    private Long tlf1;
-    private Long tlf2;
+    private String tlf1;
+    private String tlf2;
     private String nombre_padre;
     private String nombre_madre;
     private Date fechaNace;
     private String ciudadNace;
     private String paisNace;
-    private Long sip_ase;
-    private Long id_tipopago;
+    private String sip_ase;
+    private Integer id_tipopago;
     private Integer sexo;
     private Integer id_usuario;
 
-    public PacienteBean(String dni, String nombre, String primer_apellido, String segundo_apellido, String direccion, String municipio, Long codigo_postal, String provincia, String pais, String email, Long tlf1, Long tlf2, String nombre_padre, String nombre_madre, Date fechaNace, String ciudadNace, String paisNace, Long sip_ase, Long id_tipopago, Integer sexo, Integer id_usuario) {
+    public PacienteBean(String dni, String nombre, String primer_apellido, String segundo_apellido, String direccion, String municipio, String codigo_postal, String provincia, String pais, String email, String tlf1, String tlf2, String nombre_padre, String nombre_madre, Date fechaNace, String ciudadNace, String paisNace, String sip_ase, Integer id_tipopago, Integer sexo, Integer id_usuario) {
         this.dni = dni;
         this.nombre = nombre;
         this.primer_apellido = primer_apellido;
@@ -58,29 +57,17 @@ public class PacienteBean {
         this.sexo = sexo;
         this.id_usuario = id_usuario;
     }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     
-    public Long getId_tipopago() {
+    public Integer getId_tipopago() {
         return id_tipopago;
     }
 
-    public void setId_tipopago(Long id_tipopago) {
+    public void setId_tipopago(Integer id_tipopago) {
         this.id_tipopago = id_tipopago;
     }
 
     public PacienteBean() {
         
-    }
-    public PacienteBean(Integer id) {
-        this.id = id;
     }
     
     public String getDni() {
@@ -131,11 +118,11 @@ public class PacienteBean {
         this.municipio = municipio;
     }
 
-    public Long getCodigo_postal() {
+    public String getCodigo_postal() {
         return codigo_postal;
     }
 
-    public void setCodigo_postal(Long codigo_postal) {
+    public void setCodigo_postal(String codigo_postal) {
         this.codigo_postal = codigo_postal;
     }
 
@@ -163,19 +150,19 @@ public class PacienteBean {
         this.email = email;
     }
 
-    public Long getTlf1() {
+    public String getTlf1() {
         return tlf1;
     }
 
-    public void setTlf1(Long tlf1) {
+    public void setTlf1(String tlf1) {
         this.tlf1 = tlf1;
     }
 
-    public Long getTlf2() {
+    public String getTlf2() {
         return tlf2;
     }
 
-    public void setTlf2(Long tlf2) {
+    public void setTlf2(String tlf2) {
         this.tlf2 = tlf2;
     }
 
@@ -219,11 +206,11 @@ public class PacienteBean {
         this.paisNace = paisNace;
     }
 
-    public Long getSip_ase() {
+    public String getSip_ase() {
         return sip_ase;
     }
 
-    public void setSip_ase(Long sip_ase) {
+    public void setSip_ase(String sip_ase) {
         this.sip_ase = sip_ase;
     }
 
